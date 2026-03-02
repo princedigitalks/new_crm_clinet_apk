@@ -1,4 +1,3 @@
-import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
 import {
   KeyboardAvoidingView,
@@ -20,171 +19,167 @@ export default function Index() {
   const [website, setWebsite] = useState("");
 
   return (
-    <LinearGradient colors={["#667eea", "#764ba2"]} style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="#667eea" />
+    <View style={styles.container}>
+      <StatusBar barStyle="light-content" backgroundColor="#6366f1" />
+      <View style={styles.topSection}>
+        <Text style={styles.heading}>Mozu Electronics</Text>
+        <Text style={styles.subheading}>Complete the form below to add a new client</Text>
+      </View>
+
       <KeyboardAvoidingView 
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={styles.keyboardView}
       >
-        <ScrollView 
-          contentContainerStyle={styles.scrollContent}
-          keyboardShouldPersistTaps="handled"
-        >
-          <View style={styles.header}>
-            <Text style={styles.title}>✨ Client Details</Text>
-            <Text style={styles.subtitle}>Fill in the information below</Text>
+        <View style={styles.formWrapper}>
+          <ScrollView 
+            contentContainerStyle={styles.scrollContent}
+            keyboardShouldPersistTaps="handled"
+            showsVerticalScrollIndicator={false}
+          >
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>Company Name</Text>
+            <TextInput
+              style={styles.input}
+              value={companyName}
+              onChangeText={setCompanyName}
+              placeholder="e.g., Tech Solutions Pvt Ltd"
+              placeholderTextColor="#9ca3af"
+            />
           </View>
 
-          <View style={styles.formCard}>
-            <View style={styles.inputGroup}>
-              <Text style={styles.label}>🏢 Company Name</Text>
-              <TextInput
-                style={styles.input}
-                value={companyName}
-                onChangeText={setCompanyName}
-                placeholder="Enter company name"
-                placeholderTextColor="#999"
-              />
-            </View>
-
-            <View style={styles.inputGroup}>
-              <Text style={styles.label}>👤 Client Name</Text>
-              <TextInput
-                style={styles.input}
-                value={clientName}
-                onChangeText={setClientName}
-                placeholder="Enter client name"
-                placeholderTextColor="#999"
-              />
-            </View>
-
-            <View style={styles.inputGroup}>
-              <Text style={styles.label}>📱 WhatsApp No</Text>
-              <TextInput
-                style={styles.input}
-                value={whatsappNo}
-                onChangeText={setWhatsappNo}
-                placeholder="Enter WhatsApp number"
-                placeholderTextColor="#999"
-                keyboardType="phone-pad"
-              />
-            </View>
-
-            <View style={styles.inputGroup}>
-              <Text style={styles.label}>📧 Email</Text>
-              <TextInput
-                style={styles.input}
-                value={email}
-                onChangeText={setEmail}
-                placeholder="Enter email address"
-                placeholderTextColor="#999"
-                keyboardType="email-address"
-                autoCapitalize="none"
-              />
-            </View>
-
-            <View style={styles.inputGroup}>
-              <Text style={styles.label}>🌐 Website</Text>
-              <TextInput
-                style={styles.input}
-                value={website}
-                onChangeText={setWebsite}
-                placeholder="Enter website URL"
-                placeholderTextColor="#999"
-                keyboardType="url"
-                autoCapitalize="none"
-              />
-            </View>
-
-            <TouchableOpacity style={styles.button}>
-              <LinearGradient
-                colors={["#667eea", "#764ba2"]}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 0 }}
-                style={styles.buttonGradient}
-              >
-                <Text style={styles.buttonText}>Submit ✓</Text>
-              </LinearGradient>
-            </TouchableOpacity>
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>Client Name</Text>
+            <TextInput
+              style={styles.input}
+              value={clientName}
+              onChangeText={setClientName}
+              placeholder="e.g., Rajesh Kumar"
+              placeholderTextColor="#9ca3af"
+            />
           </View>
-        </ScrollView>
+
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>WhatsApp Number</Text>
+            <TextInput
+              style={styles.input}
+              value={whatsappNo}
+              onChangeText={setWhatsappNo}
+              placeholder="+91 98765 43210"
+              placeholderTextColor="#9ca3af"
+              keyboardType="phone-pad"
+            />
+          </View>
+
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>Email Address</Text>
+            <TextInput
+              style={styles.input}
+              value={email}
+              onChangeText={setEmail}
+              placeholder="client@example.com"
+              placeholderTextColor="#9ca3af"
+              keyboardType="email-address"
+              autoCapitalize="none"
+            />
+          </View>
+
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>Website</Text>
+            <TextInput
+              style={styles.input}
+              value={website}
+              onChangeText={setWebsite}
+              placeholder="www.example.com"
+              placeholderTextColor="#9ca3af"
+              keyboardType="url"
+              autoCapitalize="none"
+            />
+          </View>
+
+          <TouchableOpacity style={styles.button} activeOpacity={0.8}>
+            <Text style={styles.buttonText}>Save Client</Text>
+          </TouchableOpacity>
+          </ScrollView>
+        </View>
       </KeyboardAvoidingView>
-    </LinearGradient>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#f3f4f6",
   },
-  keyboardView: {
-    flex: 1,
+  topSection: {
+    backgroundColor: "#6366f1",
+    paddingTop: 60,
+    paddingBottom: 40,
+    paddingHorizontal: 24,
   },
-  scrollContent: {
-    flexGrow: 1,
-    paddingVertical: 40,
-  },
-  header: {
-    alignItems: "center",
-    marginBottom: 30,
-    paddingHorizontal: 20,
-  },
-  title: {
+  heading: {
     fontSize: 32,
     fontWeight: "bold",
     color: "#fff",
     marginBottom: 8,
   },
-  subtitle: {
+  subheading: {
     fontSize: 16,
-    color: "#f0f0f0",
+    color: "#e0e7ff",
   },
-  formCard: {
-    backgroundColor: "#fff",
-    borderRadius: 25,
-    marginHorizontal: 20,
-    padding: 25,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.3,
-    shadowRadius: 20,
-    elevation: 10,
+  keyboardView: {
+    flex: 1,
+    backgroundColor: "#6366f1",
   },
-  inputGroup: {
-    marginBottom: 20,
+  formWrapper: {
+    flex: 1,
+    backgroundColor: "#f3f4f6",
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    marginTop: 0,
+  },
+  scrollContent: {
+    paddingHorizontal: 24,
+    paddingTop: 30,
+    paddingBottom: 40,
+  },
+  inputContainer: {
+    marginBottom: 14,
   },
   label: {
-    fontSize: 15,
+    fontSize: 13,
     fontWeight: "600",
-    marginBottom: 10,
-    color: "#333",
+    color: "#374151",
+    marginBottom: 6,
   },
   input: {
-    backgroundColor: "#f8f9fa",
-    borderWidth: 2,
-    borderColor: "#e9ecef",
-    borderRadius: 12,
-    padding: 15,
-    fontSize: 16,
-    color: "#333",
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    
+    paddingLeft: 14,  
+    fontSize: 14,
+    color: "#1f2937",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 2,
+    elevation: 2,
   },
   button: {
-    marginTop: 10,
+    backgroundColor: "#6366f1",
+    paddingVertical: 10,
     borderRadius: 12,
-    overflow: "hidden",
-    shadowColor: "#667eea",
+    alignItems: "center",
+    marginTop: 12,
+    shadowColor: "#6366f1",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 8,
-    elevation: 5,
-  },
-  buttonGradient: {
-    padding: 18,
-    alignItems: "center",
+    elevation: 4,
   },
   buttonText: {
     color: "#fff",
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "bold",
   },
 });
